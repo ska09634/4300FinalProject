@@ -1,6 +1,25 @@
 body {
     color: #3c3c3c;
-  margin: 0;
+  margin: 10;
   font-family: 'Lato', sans-serif;
-  text-align: center;
+  text-align: left;
+}
+
+.fragment {
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: flex;
+  height: 200px;
+  width: 300px;
+  margin: 0;
+ background-color: rgb(237, 231, 243);
+}
+
+.frag-image {
+ flex: 0 0 30%;
+ width: 70%;
+}
+
+.frag-buttons{
+  flex: 0 0 30%;
 }

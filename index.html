@@ -37,14 +37,25 @@
 
     const App = () => (
         <React.Fragment>
-            <div>
-            <button>Add</button>
-            <button>Edit</button>
-            <button>Delete</button>
-            </div>
-        <Image />
-        <Description />
-        </React.Fragment>
+            <Header />
+            <React.Fragment>
+             <div class="fragment" id ="fragment">
+                <div class="frag-image">
+                     <Image />
+                </div>
+                <div class ="frag-buttons" id="button">
+                    <React.Fragment>
+                        <button>Add</button>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </React.Fragment>
+                </div>
+                <div class ="frag-desc">
+                 <Description />
+                </div>
+             </div>
+            </React.Fragment> 
+        </React.Fragment> // idk html freaks out if I try putting the header before the React frag so here's a big outer one to hold everything together
     );
 
     ReactDOM.render(
