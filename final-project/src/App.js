@@ -1,6 +1,8 @@
 import './App.css';
 import AnimalDetail from './components/AnimalDetail';
 import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 function App() {
@@ -8,9 +10,11 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route exact path='/' element={<Home/>}></Route>
+          <Route exact path='/' element={<Login/>}></Route>
           <Route path='/details' element={<AnimalDetail/>}></Route>
           <Route path='/home' element={<Home/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/signup' element={<Signup/>}></Route>
         </Routes>
       </Router>
     </>
