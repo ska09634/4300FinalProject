@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 function Image ({img, title}) {
     return <img src ={img} alt={title} class="animal-image" width="200px"/> 
 }
@@ -12,6 +14,13 @@ function Description ({animalName, desc}) {
 }
 
 const Animal = ({img, title, animalName, desc}) => {
+    const stateToTransfer = {
+        img:img,
+        title:title,
+        animalName:animalName,
+        desc:desc
+    }
+
     return (
       <div className="animalCard">
         <Image img={img} title={title}/>
@@ -22,7 +31,7 @@ const Animal = ({img, title, animalName, desc}) => {
                 <button className="delete-btn">Delete</button>
             </div>
             <Description animalName={animalName} desc={desc}/>
-            
+            <Link to='/details' state={stateToTransfer}>More Details</Link>
         </div>
       </div>
     )
