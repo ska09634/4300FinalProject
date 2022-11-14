@@ -5,7 +5,7 @@ function Image ({img, title}) {
 function Description ({animalName, desc}) {
     return (
         <>
-            <h2 className="animalName">{animalName}</h2>
+            <h2 className="animalName" id="name">{animalName}</h2>
             <p className="animalDesc">{desc}</p>
         </>
     )
@@ -22,11 +22,12 @@ const Animal = ({img, title, animalName, desc}) => {
                 <button className="delete-btn">Delete</button>
             </div>
             <Description animalName={animalName} desc={desc}/>
-            
+
         </div>
       </div>
     )
   }
+
   
   export default Animal
   
