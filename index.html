@@ -12,45 +12,48 @@
     <script src="react.js"></script>
     <script src="react-dom.js"></script>
     <script src="babel.js"></script>
+    <script src="components/Header.js"></script>
 </head>
 
 <body>
     <div id="root"></div>
     <script type="text/babel">
+        // import Header from './components/Header';
 
-    const animalName = <h2>animal name</h2>;
-    const desc = <p>description</p>;
+        const animalName = <h2>animal name</h2>;
+        const desc = <p>description</p>;
 
-    <h1 class="banner" id="main">My Zoo</h1>
+        // <h1 class="banner" id="main">My Zoo</h1>
 
-    function Header () {
-        return  <h1 class="banner" id="main">My Zoo</h1>
-    }
-    
-    function Image () {
-     return <img src ="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg" class="animal-image" id="image" width="200px"/> 
-    }
+        function Header () {
+            return  <h1 class="banner" id="main">My Zoo</h1>
+        }
+        
+        function Image () {
+        return <img src ="https://files.worldwildlife.org/wwfcmsprod/images/Tiger_resting_Bandhavgarh_National_Park_India/hero_small/6aofsvaglm_Medium_WW226365.jpg" class="animal-image" id="image" width="200px"/> 
+        }
 
-    function Description () {
-        return <p>{animalName}{desc}</p>
-    }
+        function Description () {
+            return <p>{animalName}{desc}</p>
+        }
 
-    const App = () => (
-        <React.Fragment>
-            <div>
-            <button>Add</button>
-            <button>Edit</button>
-            <button>Delete</button>
-            </div>
-        <Image />
-        <Description />
-        </React.Fragment>
-    );
+        const App = () => (
+            <React.Fragment>
+                <Header></Header>
+                <div>
+                    <button>Add</button>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+                <Image />
+                <Description />
+            </React.Fragment>
+        );
 
-    ReactDOM.render(
-        <App />,
-        document.getElementById("root")
-    );
+        ReactDOM.render(
+            <App />,
+            document.getElementById("root")
+        );
     </script>
 </body>
 </html>
