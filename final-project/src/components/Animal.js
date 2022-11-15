@@ -30,7 +30,7 @@ const Animal = ({img, title, animalName, desc}) => {
                 <button onClick={editAnimal} className="edit-btn">Edit</button>
                 <button onClick={deleteAnimal} className="delete-btn">Delete</button>
             </div>
-            <Description animalName={animalName} desc={desc}/>
+            <Description animalName={animalName} id="name" desc={desc}/>
             <Link to='/details' state={stateToTransfer}>More Details</Link> 
         </div>
         <ul id="dynamic-list"></ul>
@@ -41,9 +41,9 @@ const Animal = ({img, title, animalName, desc}) => {
   function addAnimal(name) {
     console.log(name);
     var ul = document.getElementById("dynamic-list");
-    var animal = document.querySelector('text-container.animalName');
+    var animal = document.getElementById("name");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(animal.value));
+    li.appendChild(animal);
     ul.appendChild(li);
   } 
 
