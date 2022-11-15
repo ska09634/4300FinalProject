@@ -17,6 +17,10 @@
 
 <body>
     <div id="root"></div>
+
+     
+    </ul>
+
     <script type="text/babel">
         // import Header from './components/Header';
 
@@ -36,6 +40,7 @@
         function Description () {
             return <p>{animalName}{desc}</p>
         }
+
 
         const App = () => (
             <React.Fragment>
@@ -59,7 +64,9 @@
              </div>
             </React.Fragment> 
             </React.Fragment> // idk html freaks out if I try putting the header before the React frag so here's a big outer one to hold everything together
-    );
+            );
+
+    
 
         ReactDOM.render(
             <App />,
