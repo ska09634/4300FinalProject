@@ -26,7 +26,7 @@ const Animal = ({img, title, animalName, desc}) => {
         <Image img={img} title={title}/>
         <div className="text-container">
             <div className="btn-container">
-                <button onClick={e => addAnimal(e.target.animalName)} className="add-btn">Add</button>
+                <button onClick={() => addAnimal(animalName)} className="add-btn">Add</button>
                 <button onClick={editAnimal} className="edit-btn">Edit</button>
                 <button onClick={deleteAnimal} className="delete-btn">Delete</button>
             </div>
@@ -41,9 +41,9 @@ const Animal = ({img, title, animalName, desc}) => {
   function addAnimal(name) {
     console.log(name);
     var ul = document.getElementById("dynamic-list");
-    var animal = document.getElementById("name");
+    var animal = document.querySelector('text-container.animalName');
     var li = document.createElement("li");
-    li.appendChild(animal);
+    li.appendChild(document.createTextNode(animal.value));
     ul.appendChild(li);
   } 
 

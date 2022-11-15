@@ -5,12 +5,12 @@ const Header = () => {
     <header>
     <h1 className="banner" id="header">My Zoo</h1>
       <Link to='/login'>
-      <button className="logout-btn">Logout</button>
-      <div className="list">
-          <h2>My Animals</h2>
-         <ul id="dynamic-list"></ul>
-      </div>
+        <button className="logout-btn">Logout</button>
       </Link>
+      <div className="list">
+        <h2>My Animals</h2>
+        <ul id="dynamic-list"></ul>
+      </div>
     </header>
     
   )
