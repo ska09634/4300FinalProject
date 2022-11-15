@@ -41,9 +41,8 @@ const Animal = ({img, title, animalName, desc}) => {
   function addAnimal(name) {
     console.log(name);
     var ul = document.getElementById("dynamic-list");
-    var animal = document.querySelector('text-container.animalName');
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(animal.value));
+    li.appendChild(document.createTextNode(name));
     ul.appendChild(li);
   } 
 
