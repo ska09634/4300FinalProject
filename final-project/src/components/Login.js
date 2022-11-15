@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 
+
 function Login() {
   return (
     <div className='login-container'>
@@ -21,7 +22,7 @@ function Login() {
             </div>
             <div>
               <Link to='/signup'>
-                Signup
+                Sign Up
               </Link>
             </div>
         </div>
