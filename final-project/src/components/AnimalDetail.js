@@ -24,7 +24,14 @@ const AnimalDetail = () => {
         <div className="text-container">
             <Description animalName={animalName} desc={desc}/>
         </div>
-        <Link to='/home'>Back to Home</Link>
+        <div>
+            <Link to='/home'>Back to Home</Link>
+        </div>
+        <div>
+            <Link to='/login'>
+            <button className="logout-btn">Logout</button>
+            </Link>
+        </div>
       </div>
     )
   }
