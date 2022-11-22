@@ -4,16 +4,20 @@ import Footer from './Footer';
 import Animal from './Animal';
 
 function Home() {
+  let one = Number(animals_list[0]);
+  let two = Number(animals_list[1]);
+  let three = Number(animals_list[2]);
+  
   const [animal1, setAnimal1] = useState(
-    animals[Number(animals_list[0])]
+    animals[one]
   );
 
   const [animal2, setAnimal2] = useState(
-    animals[Number(animals_list[1])]
+    animals[two]
   );
 
   const [animal3, setAnimal3] = useState(
-    animals[Number(animals_list[2])]
+    animals[three]
   );
 
   return (
