@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 function Signup() {
   return (
     <div className="signup-container">
-      <h2>Signup Page</h2>
+      <h2>Sign-Up Page</h2>
       <form>
         <div className='signup-form'>
             <div>
@@ -24,7 +24,7 @@ function Signup() {
             </div>
             <div>
               <Link to='/login'>
-                <button type='submit'>Signup</button>
+                <button type='submit'>Sign Up</button>
               </Link>
             </div>
         </div>
