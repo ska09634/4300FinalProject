@@ -13,22 +13,13 @@ function Description ({animalName, desc}) {
     )
 }
 
-const Animal = ({img, title, animalName, desc}) => {
-    const stateToTransfer = {
-        img:img,
-        title:title,
-        animalName:animalName,
-        desc:desc
-    }
-
+const Animal = ({animal}) => {
    return (
-      <div className="animalCard">
-        <Image img={img} title={title}/>
+      <div id={animal.id}>
+        <Image img={animal.img} title={animal.title}/>
         <div className="text-container">
-            <div className="btn-container">
-                <button onClick={() => addAnimal(animalName)} className="add-btn">Add</button>
-                <button onClick={editAnimal} className="edit-btn">Edit</button>
-                <button onClick={deleteAnimal} className="delete-btn">Delete</button>
+            <Description animalName={animal.name} desc={animal.desc}/>
+            <Link to='/details' state={animal}>More Details</Link>
         </div>
       </div>
     )
