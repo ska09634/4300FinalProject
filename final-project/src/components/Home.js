@@ -64,29 +64,25 @@ function addAnimal(name) {
 
 function editAnimal(animal, num){
   var checkName = false;
-  var prompt_message = 'Please enter name of animal';
 
-  while(checkName === false){
-    const animal_name = prompt(prompt_message)
-    console.log(animal_name)
+  while (checkName === false) {
+  const animal_name = prompt('Please enter name of animal')
+  console.log(animal_name)
 
-    var result = animals.filter(obj => {
-      return (obj.name.toLocaleLowerCase()).includes(animal_name.toLocaleLowerCase());
-    })
-
-    if(result.length > 0){
-      result = result[0];
-      animals_list[num] = Number(result.id) - 1;
-      console.log(result)
-      animal(result);
-      checkName = true;
-    }else{
-      prompt_message = 'Invalid Entry; Please enter name of animal';
-    }
-  }
-
+   var result = animals.filter(obj => {
+    return (obj.name.toLocaleLowerCase()).includes(animal_name.toLocaleLowerCase());
+  })
   
+  result = result[0];
+  if (result !== undefined) {
+  animals_list[num] = Number(result.id) - 1;
+  console.log(result)
+  animal(result);
+  checkName = true;
+  } 
 }
+}
+ 
 
 function deleteAnimal(animal, num){
   const new_num = Math.floor(Math.random() * 10);
