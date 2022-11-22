@@ -41,14 +41,21 @@ const Animal = ({img, title, animalName, desc}) => {
   function addAnimal(name) {
     console.log(name);
     var ul = document.getElementById("dynamic-list");
-    var animal = document.querySelector('text-container.animalName');
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(animal.value));
+    li.appendChild(document.createTextNode(name));
     ul.appendChild(li);
   } 
 
-  function editAnimal() {
-
+  function editAnimal(name, image, desc) {
+    var userInput = document.createElement("input");
+    const input = document.querySelector(userInput);
+    const myItem = input.value;
+    input.value = '';
+  /**  var img = new Image();
+    img.src =
+'https://media.geeksforgeeks.org/wp-content/uploads/20190529122828/bs21.png';
+    document.getElementById(name).appendChild(img); */
+    var newName = document.getElementById(name).setAttribute(myItem);
   }
 
   function deleteAnimal() {
