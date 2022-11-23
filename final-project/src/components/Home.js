@@ -66,21 +66,21 @@ function editAnimal(animal, num){
   var checkName = false;
 
   while (checkName === false) {
-  const animal_name = prompt('Please enter name of animal')
-  console.log(animal_name)
+    const animal_name = prompt('Please enter name of animal')
+    console.log(animal_name)
 
-   var result = animals.filter(obj => {
-    return (obj.name.toLocaleLowerCase()).includes(animal_name.toLocaleLowerCase());
-  })
+    var result = animals.filter(obj => {
+      return (obj.name.toLocaleLowerCase()).includes(animal_name.toLocaleLowerCase());
+    })
   
-  result = result[0];
-  if (result !== undefined) {
-  animals_list[num] = Number(result.id) - 1;
-  console.log(result)
-  animal(result);
-  checkName = true;
-  } 
-}
+    result = result[0];
+    if (result !== undefined && animal_name !== '') {
+    animals_list[num] = Number(result.id) - 1;
+    console.log(result)
+    animal(result);
+    checkName = true;
+    } 
+  }
 }
  
 

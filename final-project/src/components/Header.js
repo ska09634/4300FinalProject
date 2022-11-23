@@ -4,6 +4,9 @@ const Header = () => {
   return (
     <header>
     <h1 className="banner" id="header">My Zoo</h1>
+      <Link to='/create-animal'>
+        <button className="create-btn">Create</button>
+      </Link>
       <Link to='/login'>
         <button className="logout-btn">Logout</button>
       </Link>

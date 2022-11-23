@@ -1,12 +1,7 @@
 const mongoose = require('mongoose')
 
 const AnimalSchema = new mongoose.Schema({
-    id:{
-        type: Number,
-        required: true
-
-    },
-    img:{
+    image:{
         type: String,
         required: true
     },
@@ -18,11 +13,11 @@ const AnimalSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    desc:{
+    description:{
         type: String,
         required: true
     }
-});
+}, {collection: 'animalData'});
 
 const Animal = mongoose.model("animalData", AnimalSchema);
 

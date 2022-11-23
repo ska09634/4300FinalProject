@@ -3,6 +3,7 @@ import AnimalDetail from './components/AnimalDetail';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Create from './components/Create';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path='/home' element={<Home/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
+          <Route path='/create-animal' element={<Create/>}></Route>
         </Routes>
       </Router>
     </>
