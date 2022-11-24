@@ -1,4 +1,4 @@
-import {Link, useLocation } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function Image ({img, title}) {
     return <img src ={img} alt={title} class="animal-image" width="200px"/> 
@@ -13,16 +13,12 @@ function Description ({animalName, desc}) {
     )
 }
 
-const AnimalDetail = () => {
-
-    const location = useLocation()
-    const { img, title, animalName, desc } = location.state
-
+const AnimalDetail = ({animal}) => {
     return (
       <div className="animalCard">
-        <Image img={img} title={title}/>
+        <Image img={animal.image} title={animal.title}/>
         <div className="text-container">
-            <Description animalName={animalName} desc={desc}/>
+            <Description animalName={animal.name} desc={animal.description}/>
         </div>
         <div>
             <Link to='/home'>Back to Home</Link>

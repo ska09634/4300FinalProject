@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 const app = express()
 
-const AnimalModel = require("./models/Animal");
+const Animal = require("./models/Animal");
 
-var counter = 0;
+// var counter = 0;
 
 app.use(express.json());
 app.use(cors());
@@ -16,13 +16,13 @@ mongoose.connect('mongodb+srv://user1:pass123@final-project-cluster.qpzujow.mong
 });
 
 app.post('/animals', cors(), async (req, res) => {
-    console.log('Connection Status: ', mongoose.connection.readyState);
+    // console.log('Connection Status: ', mongoose.connection.readyState);
 
     const animal_data = req.body;
-    console.log(++counter);
-    console.log(animal_data);
-    const animal = new AnimalModel(animal_data)
-    console.log(animal.name + ', ' + animal.title + ', ' + animal.description + ', ' + animal.image);
+    // console.log(++counter);
+    // console.log(animal_data);
+    const animal = new Animal(animal_data)
+    // console.log(animal.name + ', ' + animal.title + ', ' + animal.description + ', ' + animal.image);
 
     animal.save().then((animal) => {
         console.log('Saved Successfully');
@@ -31,6 +31,19 @@ app.post('/animals', cors(), async (req, res) => {
         console.log('Could Not Save');
         res.status(400).send(error);
     })
+});
+
+app.get('/animals', cors(), async (req, res) => {
+    Animal.find({}, function(err, animals){
+        var animalList = [];
+        var counter = 1;
+
+        animals.forEach(function(animal){
+            animalList.push(animal);
+        });
+
+        res.send(animalList);
+    });
 });
 
 app.listen(3001, () => {
