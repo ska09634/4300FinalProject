@@ -9,6 +9,8 @@ function Home() {
   let two = Number(animals_list[1]);
   let three = Number(animals_list[2]);
 
+  const [cardList, setCardList] = useState([]);
+  // const [one, setOne] = useState(0);
   const [animals, setAnimals] = useState([]);
   const [animal1, setAnimal1] = useState(null);
   const [animal2, setAnimal2] = useState(null);
@@ -17,18 +19,18 @@ function Home() {
   useEffect(() => {
     axios.get('http://localhost:3001/animals')
       .then(res => {
-        console.log('UseEffect being Called...');
-        console.log(res.data);
+        // console.log('UseEffect being Called...');
+        // console.log(res.data);
         setAnimals(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [cardList]);
 
   useEffect(() => {
     if (animals.length > 0) {
-      console.log(animals);
+      // console.log(animals);
 
       setAnimal1(animals[one]);
       setAnimal2(animals[two]);

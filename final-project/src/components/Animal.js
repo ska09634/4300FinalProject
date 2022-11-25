@@ -14,13 +14,13 @@ function Description({ animalName, desc }) {
 }
 
 const Animal = ({ animal }) => {
-    console.log('Animal: ', animal);
+    console.log('Inside Animal: ', animal);
     return (
         <div id={animal.title}>
             <Image img={animal.image} title={animal.title} />
             <div className="text-container">
                 <Description animalName={animal.name} desc={animal.description} />
-                <Link to='/details' animal={animal}>More Details</Link>
+                <Link to='/details' state={{animal: animal}}>More Details</Link>
             </div>
         </div>
     )

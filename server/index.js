@@ -4,8 +4,7 @@ const cors = require('cors');
 const app = express()
 
 const Animal = require("./models/Animal");
-
-// var counter = 0;
+const Card = require("./models/Card");
 
 app.use(express.json());
 app.use(cors());
@@ -16,13 +15,8 @@ mongoose.connect('mongodb+srv://user1:pass123@final-project-cluster.qpzujow.mong
 });
 
 app.post('/animals', cors(), async (req, res) => {
-    // console.log('Connection Status: ', mongoose.connection.readyState);
-
     const animal_data = req.body;
-    // console.log(++counter);
-    // console.log(animal_data);
     const animal = new Animal(animal_data)
-    // console.log(animal.name + ', ' + animal.title + ', ' + animal.description + ', ' + animal.image);
 
     animal.save().then((animal) => {
         console.log('Saved Successfully');
@@ -36,7 +30,6 @@ app.post('/animals', cors(), async (req, res) => {
 app.get('/animals', cors(), async (req, res) => {
     Animal.find({}, function(err, animals){
         var animalList = [];
-        var counter = 1;
 
         animals.forEach(function(animal){
             animalList.push(animal);
@@ -46,6 +39,31 @@ app.get('/animals', cors(), async (req, res) => {
     });
 });
 
+app.post('/cards', cors(), async (req, res) => {
+    const card_data = req.body;
+    const card = new Card(card_data)
+
+    card.save().then((card) => {
+        console.log('Saved Successfully');
+        res.status(201).send(card);
+    }).catch((error) =>{
+        console.log('Could Not Save');
+        res.status(400).send(error);
+    })
+});
+
 app.listen(3001, () => {
     console.log('Server running on port 3001...');
+});
+
+app.get('/cards', cors(), async (req, res) => {
+    Card.find({}, function(err, cards){
+        var cardList = [];
+
+        cards.forEach(function(card){
+            cardList.push(card);
+        });
+
+        res.send(cardList);
+    });
 });
