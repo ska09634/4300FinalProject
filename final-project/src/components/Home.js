@@ -5,16 +5,32 @@ import Footer from './Footer';
 import Animal from './Animal';
 
 function Home() {
-  let one = Number(animals_list[0]);
-  let two = Number(animals_list[1]);
-  let three = Number(animals_list[2]);
 
+  const [loading, setLoading] = useState(true);
   const [cardList, setCardList] = useState([]);
-  // const [one, setOne] = useState(0);
   const [animals, setAnimals] = useState([]);
   const [animal1, setAnimal1] = useState(null);
   const [animal2, setAnimal2] = useState(null);
   const [animal3, setAnimal3] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/cards')
+      .then(res => {
+        // console.log('UseEffect being Called...');
+        // console.log('CardList: ', res.data);
+
+        const finalArray = (res.data).map(function (obj) {
+          return obj.title;
+        });
+
+        // console.log('CardList Index: ', finalArray);
+
+        setCardList(finalArray);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     axios.get('http://localhost:3001/animals')
@@ -30,15 +46,48 @@ function Home() {
 
   useEffect(() => {
     if (animals.length > 0) {
-      // console.log(animals);
+      // console.log(`cardList: ${cardList}`);
 
-      setAnimal1(animals[one]);
-      setAnimal2(animals[two]);
-      setAnimal3(animals[three]);
+      const animal1 = animals.filter(obj => {
+        return obj.title === cardList[0];
+      })[0];
+
+      const animal2 = animals.filter(obj => {
+        return obj.title === cardList[1];
+      })[0];
+
+      const animal3 = animals.filter(obj => {
+        return obj.title === cardList[2];
+      })[0];
+
+      setAnimal1(animal1);
+      setAnimal2(animal2);
+      setAnimal3(animal3);
+
+      setLoading(false);
     }
-  }, [animals]);
+  }, [animals, cardList]);
 
-  if (animal1 === null || animal2 === null || animal3 === null) {
+  const updateCardList = (oldTitle, newTitle) => {
+    const uri = `http://localhost:3001/cards/${oldTitle}`;
+    const data = { title: newTitle };
+    console.log(`uri: ${uri}`);
+    let result = axios.post(uri,
+      data,{
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json'
+      }
+    });
+
+    result
+    // .then(response => response.text())
+    .then((data) => {console.log('Printing response data: ', data)});
+
+    console.log(`oldTitle: ${oldTitle}, newTitle: ${newTitle}`);
+  };
+
+  if (loading) {
     return <>Still loading...</>;
   }
 
@@ -49,24 +98,24 @@ function Home() {
         <div className="animalCard" id='animal-one-container'>
           <div className="btn-container">
             <button id="add-btn-one" onClick={() => addAnimal(animal1.name)}>Add</button>
-            <button id="edit-btn-one" onClick={() => editAnimal(animals, setAnimal1, 0)}>Edit</button>
-            <button id="delete-btn-one" onClick={() => deleteAnimal(animals, setAnimal1, 0)}>Delete</button>
+            <button id="edit-btn-one" onClick={() => editAnimal(animals, setAnimal1, cardList, setCardList, 0, updateCardList)}>Edit</button>
+            <button id="delete-btn-one" onClick={() => deleteAnimal(animals, setAnimal1, cardList, setCardList, 0)}>Delete</button>
           </div>
           <Animal animal={animal1}></Animal>
         </div>
         <div className="animalCard" id='animal-two-container'>
           <div className="btn-container">
             <button id="add-btn-two" onClick={() => addAnimal(animal2.name)}>Add</button>
-            <button id="edit-btn-two" onClick={() => editAnimal(animals, setAnimal2, 1)}>Edit</button>
-            <button id="delete-btn-two" onClick={() => deleteAnimal(animals, setAnimal2, 1)}>Delete</button>
+            <button id="edit-btn-two" onClick={() => editAnimal(animals, setAnimal2, cardList, setCardList, 1, updateCardList)}>Edit</button>
+            <button id="delete-btn-two" onClick={() => deleteAnimal(animals, setAnimal2, cardList, setCardList, 1)}>Delete</button>
           </div>
           <Animal animal={animal2}></Animal>
         </div>
         <div className="animalCard" id='animal-three-container'>
           <div className="btn-container">
             <button id="add-btn-three" onClick={() => addAnimal(animal3.name)}>Add</button>
-            <button id="edit-btn-three" onClick={() => editAnimal(animals, setAnimal3, 2)}>Edit</button>
-            <button id="delete-btn-three" onClick={() => deleteAnimal(animals, setAnimal3, 2)}>Delete</button>
+            <button id="edit-btn-three" onClick={() => editAnimal(animals, setAnimal3, cardList, setCardList, 2, updateCardList)}>Edit</button>
+            <button id="delete-btn-three" onClick={() => deleteAnimal(animals, setAnimal3, cardList, setCardList, 2)}>Delete</button>
           </div>
           <Animal animal={animal3}></Animal>
         </div>
@@ -84,7 +133,7 @@ function addAnimal(name) {
   ul.appendChild(li);
 }
 
-function editAnimal(animals, setAnimal, num) {
+function editAnimal(animals, setAnimal, cardList, setCardList, num, updateCardList) {
   var checkName = false;
 
   while (checkName === false) {
@@ -96,24 +145,31 @@ function editAnimal(animals, setAnimal, num) {
     })
 
     result = result[0];
+    
+    const newCardList = [cardList[0], cardList[1], cardList[2]];
     if (result !== undefined && animal_name !== '') {
-      animals_list[num] = Number(result.id) - 1;
-      console.log(result)
+      const oldTitle = newCardList[num];
+      newCardList[num] = result.title;
+      const newTitle = newCardList[num];
+      setCardList(newCardList);
+      // console.log(result);
       setAnimal(result);
       checkName = true;
+      updateCardList(oldTitle, newTitle);
     }
   }
 }
 
 
-function deleteAnimal(animals, setAnimal, num) {
+function deleteAnimal(animals, setAnimal, cardList, setCardList, num) {
   const new_num = Math.floor(Math.random() * 10);
-  var result = animals[new_num]
-  animals_list[num] = new_num;
+  var result = animals[new_num];
+
+  const newCardList = [cardList[0], cardList[1], cardList[2]];
+  newCardList[num] = result.title;
+  setCardList(newCardList);
   console.log(result)
   setAnimal(result);
 }
-
-let animals_list = [0, 1, 2];
 
 export default Home

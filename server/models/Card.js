@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const CardSchema = new mongoose.Schema({
-    index:{
-        type: Number,
+    title:{
+        type: String,
         required: true
     }
 }, {collection: 'cardList'});

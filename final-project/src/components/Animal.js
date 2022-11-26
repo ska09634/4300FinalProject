@@ -14,7 +14,7 @@ function Description({ animalName, desc }) {
 }
 
 const Animal = ({ animal }) => {
-    console.log('Inside Animal: ', animal);
+    // console.log('Inside Animal: ', animal);
     return (
         <div id={animal.title}>
             <Image img={animal.image} title={animal.title} />

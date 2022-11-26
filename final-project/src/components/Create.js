@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from "react";
+import axios from 'axios';
 
 function Create() {
     const [name, setName] = useState('');
@@ -12,12 +13,12 @@ function Create() {
         const animal = { name, title, description, image };
         console.log(animal);
 
-        fetch('http://localhost:3001/animals', {
-            method: 'POST',
+        axios.post('http://localhost:3001/animals',
+        animal,{
             headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(animal)
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            }
         });
     }
 

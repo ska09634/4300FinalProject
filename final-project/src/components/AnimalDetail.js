@@ -16,7 +16,7 @@ function Description({ animalName, desc }) {
 const AnimalDetail = () => {
     const animalVal = useLocation().state.animal;
 
-    console.log('Inside Animal Details: ', animalVal);
+    // console.log('Inside Animal Details: ', animalVal);
 
     return (
         <div className="animalCard">

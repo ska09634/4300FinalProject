@@ -7,6 +7,7 @@ const Animal = require("./models/Animal");
 const Card = require("./models/Card");
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 mongoose.connect('mongodb+srv://user1:pass123@final-project-cluster.qpzujow.mongodb.net/animal?retryWrites=true&w=majority', {
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://user1:pass123@final-project-cluster.qpzujow.mong
 });
 
 app.post('/animals', cors(), async (req, res) => {
+    console.log(req.body);
     const animal_data = req.body;
     const animal = new Animal(animal_data)
 
@@ -52,10 +54,6 @@ app.post('/cards', cors(), async (req, res) => {
     })
 });
 
-app.listen(3001, () => {
-    console.log('Server running on port 3001...');
-});
-
 app.get('/cards', cors(), async (req, res) => {
     Card.find({}, function(err, cards){
         var cardList = [];
@@ -66,4 +64,25 @@ app.get('/cards', cors(), async (req, res) => {
 
         res.send(cardList);
     });
+});
+
+app.post('/cards/:title', cors(), async (req, res) => {
+    const title = req.params.title;
+    const new_title = req.body;
+
+    console.log(`oldTitle: ${title}, newTitle: ${new_title.title}`);
+
+    Card.findOneAndUpdate({title: title}, new_title, {new: true}, (error, data) => {
+        if(error){
+            console.log(error);
+            res.send("error");
+        }else{
+            console.log(data);
+            res.send("ok");
+        }
+    });
+});
+
+app.listen(3001, () => {
+    console.log('Server running on port 3001...');
 });
