@@ -99,7 +99,7 @@ function Home() {
           <div className="btn-container">
             <button id="add-btn-one" onClick={() => addAnimal(animal1.name)}>Add</button>
             <button id="edit-btn-one" onClick={() => editAnimal(animals, setAnimal1, cardList, setCardList, 0, updateCardList)}>Edit</button>
-            <button id="delete-btn-one" onClick={() => deleteAnimal(animals, setAnimal1, cardList, setCardList, 0)}>Delete</button>
+            <button id="delete-btn-one" onClick={() => deleteAnimal(animals, setAnimal1, cardList, setCardList, 0, updateCardList)}>Delete</button>
           </div>
           <Animal animal={animal1}></Animal>
         </div>
@@ -107,7 +107,7 @@ function Home() {
           <div className="btn-container">
             <button id="add-btn-two" onClick={() => addAnimal(animal2.name)}>Add</button>
             <button id="edit-btn-two" onClick={() => editAnimal(animals, setAnimal2, cardList, setCardList, 1, updateCardList)}>Edit</button>
-            <button id="delete-btn-two" onClick={() => deleteAnimal(animals, setAnimal2, cardList, setCardList, 1)}>Delete</button>
+            <button id="delete-btn-two" onClick={() => deleteAnimal(animals, setAnimal2, cardList, setCardList, 1, updateCardList)}>Delete</button>
           </div>
           <Animal animal={animal2}></Animal>
         </div>
@@ -115,7 +115,7 @@ function Home() {
           <div className="btn-container">
             <button id="add-btn-three" onClick={() => addAnimal(animal3.name)}>Add</button>
             <button id="edit-btn-three" onClick={() => editAnimal(animals, setAnimal3, cardList, setCardList, 2, updateCardList)}>Edit</button>
-            <button id="delete-btn-three" onClick={() => deleteAnimal(animals, setAnimal3, cardList, setCardList, 2)}>Delete</button>
+            <button id="delete-btn-three" onClick={() => deleteAnimal(animals, setAnimal3, cardList, setCardList, 2, updateCardList)}>Delete</button>
           </div>
           <Animal animal={animal3}></Animal>
         </div>
@@ -161,15 +161,18 @@ function editAnimal(animals, setAnimal, cardList, setCardList, num, updateCardLi
 }
 
 
-function deleteAnimal(animals, setAnimal, cardList, setCardList, num) {
+function deleteAnimal(animals, setAnimal, cardList, setCardList, num, updateCardList) {
   const new_num = Math.floor(Math.random() * 10);
   var result = animals[new_num];
 
   const newCardList = [cardList[0], cardList[1], cardList[2]];
+  const oldTitle = newCardList[num];
   newCardList[num] = result.title;
+  const newTitle = newCardList[num];
   setCardList(newCardList);
   console.log(result)
   setAnimal(result);
+  updateCardList(oldTitle, newTitle);
 }
 
 export default Home
