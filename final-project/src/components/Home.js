@@ -73,7 +73,7 @@ function Home() {
     const data = { title: newTitle };
     console.log(`uri: ${uri}`);
     let result = axios.post(uri,
-      data,{
+      data, {
       headers: {
         "Content-Type": "application/json",
         'Accept': 'application/json'
@@ -81,8 +81,8 @@ function Home() {
     });
 
     result
-    // .then(response => response.text())
-    .then((data) => {console.log('Printing response data: ', data)});
+      // .then(response => response.text())
+      .then((data) => { console.log('Printing response data: ', data) });
 
     console.log(`oldTitle: ${oldTitle}, newTitle: ${newTitle}`);
   };
@@ -145,9 +145,9 @@ function editAnimal(animals, setAnimal, cardList, setCardList, num, updateCardLi
     })
 
     result = result[0];
-    
+
     const newCardList = [cardList[0], cardList[1], cardList[2]];
-    if (result !== undefined && animal_name !== '') {
+    if (result !== undefined && animal_name !== '' && !newCardList.includes(result.title)) {
       const oldTitle = newCardList[num];
       newCardList[num] = result.title;
       const newTitle = newCardList[num];
@@ -162,17 +162,24 @@ function editAnimal(animals, setAnimal, cardList, setCardList, num, updateCardLi
 
 
 function deleteAnimal(animals, setAnimal, cardList, setCardList, num, updateCardList) {
-  const new_num = Math.floor(Math.random() * 10);
-  var result = animals[new_num];
+  let checkDup = true;
 
-  const newCardList = [cardList[0], cardList[1], cardList[2]];
-  const oldTitle = newCardList[num];
-  newCardList[num] = result.title;
-  const newTitle = newCardList[num];
-  setCardList(newCardList);
-  console.log(result)
-  setAnimal(result);
-  updateCardList(oldTitle, newTitle);
+  while (checkDup) {
+    const new_num = Math.floor(Math.random() * 10);
+    var result = animals[new_num];
+    const newCardList = [cardList[0], cardList[1], cardList[2]];
+    // console.log(`New Animal title: ${result.title}`);
+    if (!newCardList.includes(result.title)) {
+      const oldTitle = newCardList[num];
+      newCardList[num] = result.title;
+      const newTitle = newCardList[num];
+      setCardList(newCardList);
+      console.log(result)
+      setAnimal(result);
+      updateCardList(oldTitle, newTitle);
+      checkDup = false;
+    }
+  }
 }
 
 export default Home

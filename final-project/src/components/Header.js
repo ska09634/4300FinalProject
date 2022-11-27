@@ -7,6 +7,9 @@ const Header = () => {
       <Link to='/create-animal'>
         <button className="create-btn">Create</button>
       </Link>
+      <Link to='/full-list'>
+        <button className="full-btn">Full List</button>
+      </Link>
       <Link to='/login'>
         <button className="logout-btn">Logout</button>
       </Link>
