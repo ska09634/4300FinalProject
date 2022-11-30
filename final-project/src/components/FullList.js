@@ -27,9 +27,14 @@ function FullList() {
     // console.log(`Animals: {animals}`);
 
     return (
-        <div>
+        <div className='fullList'>
             <h1>Full List</h1>
-            <div className='animal-container' id='animals-container'>
+            <div className="btn-nav">
+                <Link to='/home'>
+                    <button>Go Back</button>
+                </Link>
+            </div>
+            <div className="animal-container-fl" id='animals-container'>
                 {
                     animals.map((animal) => {
                         return (
@@ -39,11 +44,6 @@ function FullList() {
                         )
                     })
                 }
-            </div>
-            <div>
-                <Link to='/home'>
-                    <button>Go Back</button>
-                </Link>
             </div>
         </div>
     );
