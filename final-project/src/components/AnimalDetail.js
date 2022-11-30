@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 function Image({ img, title }) {
     return <img src={img} alt={title} class="animal-image" width="200px" />
@@ -14,9 +14,16 @@ function Description({ animalName, desc }) {
 }
 
 const AnimalDetail = () => {
+    const navigate = useNavigate();
     const animalVal = useLocation().state.animal;
 
     // console.log('Inside Animal Details: ', animalVal);
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        navigate('/login');
+    };
 
     return (
         <div className="animalCard">
@@ -28,9 +35,7 @@ const AnimalDetail = () => {
                 <Link to='/home'>Back to Home</Link>
             </div>
             <div>
-                <Link to='/login'>
-                    <button className="logout-btn">Logout</button>
-                </Link>
+                <button className="logout-btn" onClick={(event) => handleLogout(event)}>Logout</button>
             </div>
         </div>
     )

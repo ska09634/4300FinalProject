@@ -1,11 +1,27 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Animal from './Animal';
 
 function FullList() {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [animals, setAnimals] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3001/getEmail", {
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(`data.isLoggedIn: ${data.isLoggedIn}`);
+                if (!data.isLoggedIn) {
+                    navigate("/login")
+                }
+            });
+    }, []);
 
     useEffect(() => {
         axios.get('http://localhost:3001/animals')

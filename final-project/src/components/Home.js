@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './Header';
@@ -5,13 +6,28 @@ import Footer from './Footer';
 import Animal from './Animal';
 
 function Home() {
-
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [cardList, setCardList] = useState([]);
   const [animals, setAnimals] = useState([]);
   const [animal1, setAnimal1] = useState(null);
   const [animal2, setAnimal2] = useState(null);
   const [animal3, setAnimal3] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/getEmail", {
+      headers: {
+        "x-access-token": localStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(`data.isLoggedIn: ${data.isLoggedIn}`);
+        if (!data.isLoggedIn) {
+          navigate("/login")
+        }
+      });
+  }, []);
 
   useEffect(() => {
     axios.get('http://localhost:3001/cards')
