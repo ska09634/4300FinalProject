@@ -52,6 +52,7 @@ function Login() {
   }, [loginSuccess]);
 
   return (
+  <div className='bg'>
     <div className='login-container'>
       <h2>Login Page</h2>
       <form onSubmit={event => handleSubmit(event)}>
@@ -74,8 +75,8 @@ function Login() {
           </div>
         </div>
       </form>
-
     </div>
+  </div>
   )
 }
 
