@@ -22,15 +22,21 @@ mongoose.connect('mongodb+srv://user1:pass123@final-project-cluster.qpzujow.mong
 app.post('/animals', cors(), async (req, res) => {
     console.log(req.body);
     const animal_data = req.body;
-    const animal = new Animal(animal_data)
+    // const animal = new Animal(animal_data);
 
-    animal.save().then((animal) => {
-        console.log('Saved Successfully');
-        res.status(201).send(animal);
-    }).catch((error) => {
-        console.log('Could Not Save');
-        res.status(400).send(error);
-    })
+    var query = {title: req.body.title},
+        update = animal_data,
+        options = { upsert: true, new: true, setDefaultOnInsert: true };
+
+    Animal.findOneAndUpdate(query, update, options, function (error, data) {
+        if (error) {
+            console.log(error);
+            res.send("error");
+        } else {
+            console.log(data);
+            res.send("ok");
+        }
+    });
 });
 
 app.post('/delete-animal/:title', cors(), async (req, res) => {

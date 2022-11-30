@@ -95,13 +95,22 @@ function Delete() {
             result.then((data) => { console.log('Printing response data: ', data) });
         }
 
-        axios.post(`http://localhost:3001/delete-animal/${selectedAnimal}`,
+        const result = axios.post(`http://localhost:3001/delete-animal/${selectedAnimal}`,
             {
                 headers: {
                     "Content-Type": "application/json",
                     'Accept': 'application/json'
                 }
             });
+
+        result.then((data) => {
+            // console.log('Printing response data: ', data.data) 
+            if (data.data === 'ok') {
+                alert('Animal deletion successful');
+            } else {
+                alert('Animal deletion unsuccessful');
+            }
+        });
     }
 
     if (loading || animals.length === 0) {

@@ -29,13 +29,24 @@ function Create() {
         const animal = { name, title, description, image };
         console.log(animal);
 
-        axios.post('http://localhost:3001/animals',
+        const result = axios.post('http://localhost:3001/animals',
             animal, {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
             }
         });
+
+        result.then((data) => { 
+            // console.log('Printing response data: ', data.data) 
+            if(data.data === 'ok'){
+                alert('Animal creation successful');
+            }else{
+                alert('Animal creation unsuccessful');
+            }
+        });
+
+        // console.log(`result: ${result}`);
     }
 
     return (
