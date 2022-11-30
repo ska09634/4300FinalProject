@@ -39,6 +39,7 @@ function Create() {
     }
 
     return (
+        <div className='bg'>
         <div className="create-container">
             <h2>Create Animal Page</h2>
             <form onSubmit={handleSubmit}>
@@ -70,6 +71,7 @@ function Create() {
                     <button>Go Back</button>
                 </Link>
             </div>
+        </div>
         </div>
     )
 }

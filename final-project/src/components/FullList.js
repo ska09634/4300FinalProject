@@ -43,6 +43,7 @@ function FullList() {
     // console.log(`Animals: {animals}`);
 
     return (
+    <div className='bg'>
         <div className='fullList'>
             <h1>Full List</h1>
             <div className="btn-nav">
@@ -62,6 +63,7 @@ function FullList() {
                 }
             </div>
         </div>
+    </div>
     );
 }
 
