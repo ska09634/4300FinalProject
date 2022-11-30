@@ -15,6 +15,9 @@ const Header = () => {
       <Link to='/create-animal'>
         <button className="create-btn">Create</button>
       </Link>
+      <Link to='/delete-animal'>
+        <button className="delete-btn">Delete</button>
+      </Link>
       <Link to='/full-list'>
         <button className="full-btn">Full List</button>
       </Link>
