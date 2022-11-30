@@ -21,6 +21,7 @@ function App() {
           <Route path='/create-animal' element={<Create/>}></Route>
           <Route path='/delete-animal' element={<Delete/>}></Route>
           <Route path='/full-list' element={<FullList/>}></Route>
+          <Route path="*" element={<Login/>} />
         </Routes>
       </Router>
     </>

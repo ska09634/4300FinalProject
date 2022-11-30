@@ -109,32 +109,35 @@ function Delete() {
     }
 
     return (
-        <div className="delete-container">
-            <h2>Delete Animal Page</h2>
-            <form onSubmit={handleSubmit}>
-                <div className='delete-form'>
-                    <div>
-                        <label>Choose Animal: </label>
-                        <select id='animals' onChange={(event) => setSelectedAnimal(event.target.value)}>
-                            <option value=''></option>
-                            {
-                                animals.map((animal) => {
-                                    return (
-                                        <option value={animal.title}>{animal.name}</option>
-                                    )
-                                })
-                            }
-                        </select>
+        <div className='bg'>
+            <div className="delete-container">
+                <h2>Delete Animal Page</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className='delete-form'>
+                        <div>
+                            <label>Choose Animal: </label>
+                            <select id='animals' onChange={(event) => setSelectedAnimal(event.target.value)}>
+                                <option value=''></option>
+                                {
+                                    animals.map((animal) => {
+                                        return (
+                                            <option value={animal.title}>{animal.name}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <p> </p>
+                        <div>
+                            <button type='submit'>Delete Animal</button>
+                        </div>
                     </div>
-                    <div>
-                        <button type='submit'>Delete Animal</button>
-                    </div>
+                </form>
+                <div>
+                    <Link to='/home'>
+                        <button>Go Back</button>
+                    </Link>
                 </div>
-            </form>
-            <div>
-                <Link to='/home'>
-                    <button>Go Back</button>
-                </Link>
             </div>
         </div>
     );
