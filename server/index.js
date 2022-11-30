@@ -33,6 +33,22 @@ app.post('/animals', cors(), async (req, res) => {
     })
 });
 
+app.post('/delete-animal/:title', cors(), async (req, res) => {
+    const title = req.params.title;
+
+    console.log(`animal title: ${title}`);
+
+    Animal.findOneAndDelete({ title: title }, (error, data) => {
+        if (error) {
+            console.log(error);
+            res.send("error");
+        } else {
+            console.log(data);
+            res.send("ok");
+        }
+    });
+});
+
 app.get('/animals', cors(), async (req, res) => {
     Animal.find({}, function (err, animals) {
         var animalList = [];

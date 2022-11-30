@@ -11,18 +11,18 @@ function Create() {
 
     useEffect(() => {
         fetch("http://localhost:3001/getEmail", {
-          headers: {
-            "x-access-token": localStorage.getItem("token")
-          }
-        })
-          .then(res => res.json())
-          .then(data => {
-            console.log(`data.isLoggedIn: ${data.isLoggedIn}`);
-            if (!data.isLoggedIn) {
-              navigate("/login")
+            headers: {
+                "x-access-token": localStorage.getItem("token")
             }
-          });
-      }, []);
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(`data.isLoggedIn: ${data.isLoggedIn}`);
+                if (!data.isLoggedIn) {
+                    navigate("/login")
+                }
+            });
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ function Create() {
         console.log(animal);
 
         axios.post('http://localhost:3001/animals',
-        animal,{
+            animal, {
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
@@ -40,38 +40,38 @@ function Create() {
 
     return (
         <div className='bg'>
-        <div className="create-container">
-            <h2>Create Animal Page</h2>
-            <form onSubmit={handleSubmit}>
-                <div className='create-form'>
-                    <div>
-                        <label>Name: </label>
-                        <input type="text" placeholder="Enter Name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            <div className="create-container">
+                <h2>Create Animal Page</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className='create-form'>
+                        <div>
+                            <label>Name: </label>
+                            <input type="text" placeholder="Enter Name" name="name" value={name} onChange={(e) => setName(e.target.value)} required />
+                        </div>
+                        <div>
+                            <label>Title: </label>
+                            <input type="text" placeholder="Enter Title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                        </div>
+                        <div>
+                            <label>Description: </label>
+                            <textarea maxLength="1800" placeholder="Enter Description" name="desc" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        </div>
+                        <div>
+                            <label>Image: </label>
+                            <input type="url" placeholder="Enter Image URL" name="img" value={image} onChange={(e) => setImage(e.target.value)} required />
+                        </div>
+                        <div>
+                            <button type='submit'>Create Animal</button>
+                        </div>
                     </div>
-                    <div>
-                        <label>Title: </label>
-                        <input type="text" placeholder="Enter Title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                    </div>
-                    <div>
-                        <label>Description: </label>
-                        <textarea maxLength="1800" placeholder="Enter Description" name="desc" value={description} onChange={(e) => setDescription(e.target.value)} required />
-                    </div>
-                    <div>
-                        <label>Image: </label>
-                        <input type="url" placeholder="Enter Image URL" name="img" value={image} onChange={(e) => setImage(e.target.value)} required />
-                    </div>
-                    <div>
-                        <button type='submit'>Create Animal</button>
-                    </div>
-                </div>
-            </form>
+                </form>
 
-            <div>
-                <Link to='/home'>
-                    <button>Go Back</button>
-                </Link>
+                <div>
+                    <Link to='/home'>
+                        <button>Go Back</button>
+                    </Link>
+                </div>
             </div>
-        </div>
         </div>
     )
 }

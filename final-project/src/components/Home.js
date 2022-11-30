@@ -181,7 +181,7 @@ function deleteAnimal(animals, setAnimal, cardList, setCardList, num, updateCard
   let checkDup = true;
 
   while (checkDup) {
-    const new_num = Math.floor(Math.random() * 10);
+    const new_num = Math.floor(Math.random() * animals.length);
     var result = animals[new_num];
     const newCardList = [cardList[0], cardList[1], cardList[2]];
     // console.log(`New Animal title: ${result.title}`);
