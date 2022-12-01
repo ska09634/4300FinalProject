@@ -199,8 +199,7 @@ a:hover {
   background: linear-gradient(45deg, #f3b886, #e7b13c, #9a48bd, #5d15d8bd);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  height: 100%;
-  background-attachment: fixed;
+  height: 150vh;
 }
  
 .App-link {
