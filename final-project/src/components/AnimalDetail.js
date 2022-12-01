@@ -26,6 +26,7 @@ const AnimalDetail = () => {
     };
 
     return (
+        <div className='bg'>
         <div className="animalCard">
             <Image img={animalVal.image} title={animalVal.title} />
             <div className="text-container">
@@ -38,6 +39,7 @@ const AnimalDetail = () => {
                 <button className="logout-btn" onClick={(event) => handleLogout(event)}>Logout</button>
             </div>
         </div>
+    </div>
     )
 }
 
