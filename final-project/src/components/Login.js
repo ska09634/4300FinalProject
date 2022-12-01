@@ -28,9 +28,14 @@ function Login() {
       .then(res => res.json())
       .then(data => {
         console.log(data.message);
-        console.log(`data.token: ${data.token}`);
-        localStorage.setItem("token", data.token);
-        setLoginSuccess(true);
+
+        if (data.message.toLowerCase() === 'success') {
+          console.log(`data.token: ${data.token}`);
+          localStorage.setItem("token", data.token);
+          setLoginSuccess(true);
+        }else{
+          alert(data.message);
+        }
       });
   };
 
@@ -52,31 +57,31 @@ function Login() {
   }, [loginSuccess]);
 
   return (
-  <div className='bg'>
-    <div className='login-container'>
-      <h2>Login Page</h2>
-      <form onSubmit={event => handleSubmit(event)}>
-        <div className='login-form'>
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter Email" name="email" id="email" required />
+    <div className='bg'>
+      <div className='login-container'>
+        <h2>Login Page</h2>
+        <form onSubmit={event => handleSubmit(event)}>
+          <div className='login-form'>
+            <div>
+              <label htmlFor="email">Email: </label>
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter Email" name="email" id="email" required />
+            </div>
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password" name="password" id="password" required />
+            </div>
+            <div>
+              <button type='submit'>Login</button>
+            </div>
+            <div>
+              <Link to='/signup'>
+                Sign Up
+              </Link>
+            </div>
           </div>
-          <div>
-            <label htmlFor="password">Password: </label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password" name="password" id="password" required />
-          </div>
-          <div>
-            <button type='submit'>Login</button>
-          </div>
-          <div>
-            <Link to='/signup'>
-              Sign Up
-            </Link>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
   )
 }
 

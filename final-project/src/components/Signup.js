@@ -19,7 +19,7 @@ function Signup() {
     const user = { first_name, last_name, email, password };
     console.log(user);
 
-    axios.post('http://localhost:3001/users',
+    const result = axios.post('http://localhost:3001/users',
       user, {
       headers: {
         "Content-Type": "application/json",
@@ -27,44 +27,52 @@ function Signup() {
       }
     });
 
-    navigate('/login');
+    result.then((data) => {
+      // console.log(`data: ${data.data.message}`);
+
+      if (data.data.message) {
+        alert('Email already in use');
+      } else {
+        navigate('/login');
+      }
+    });
   };
 
   return (
-  <div className='bg'>
-    <div className="signup-container">
-      <h2>Sign-Up Page</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='signup-form'>
-          <div>
-            <label htmlFor="firstname">First Name: </label>
-            <input value={first_name} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="Enter First Name" name="firstname" id="firstname" required />
+    <div className='bg'>
+      <div className="signup-container">
+        <h2>Sign-Up Page</h2>
+        <form onSubmit={handleSubmit}>
+          <div className='signup-form'>
+            <div>
+              <label htmlFor="firstname">First Name: </label>
+              <input value={first_name} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="Enter First Name" name="firstname" id="firstname" required />
+            </div>
+            <div>
+              <label htmlFor="lastname">Last Name: </label>
+              <input value={last_name} onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Enter Last Name" name="lastname" id="lastname" required />
+            </div>
+            <div>
+              <label htmlFor="email">Email: </label>
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter Email" name="email" id="email" required />
+            </div>
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password" name="password" id="password" required />
+            </div>
+            <div>
+              {/* <Link to='/login'> */}
+              <button type='submit'>Sign Up</button>
+              {/* </Link> */}
+            </div>
+            <div>
+              <Link to='/login'>
+                Login
+              </Link>
+            </div>
           </div>
-          <div>
-            <label htmlFor="lastname">Last Name: </label>
-            <input value={last_name} onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Enter Last Name" name="lastname" id="lastname" required />
-          </div>
-          <div>
-            <label htmlFor="email">Email: </label>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter Email" name="email" id="email" required />
-          </div>
-          <div>
-            <label htmlFor="password">Password: </label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter Password" name="password" id="password" required />
-          </div>
-          <div>
-            {/* <Link to='/login'> */}
-            <button type='submit'>Sign Up</button>
-            {/* </Link> */}
-          </div>
-          <div>
-            <Link to='/login'>
-              Login
-            </Link>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   )
 }
